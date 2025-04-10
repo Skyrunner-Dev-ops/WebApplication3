@@ -25,7 +25,9 @@ jobs:
           /p:OutputPath=Published\
 
     - name: List Published Folder (Debugging)
-      run: dir Published /s
+      run: |
+        echo "Contents of Published folder:"
+        Get-ChildItem -Recurse -Path Published
 
     - name: Upload Published App as Artifact
       uses: actions/upload-artifact@v4

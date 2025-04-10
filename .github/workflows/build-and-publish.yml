@@ -20,7 +20,7 @@ jobs:
 
     - name: Build Project to Output Folder
       run: |
-        msbuild WebApplication3/WebApplication3.csproj `
+        msbuild WebApplication3.csproj `
           /p:Configuration=Release `
           /p:OutputPath=Published\
 

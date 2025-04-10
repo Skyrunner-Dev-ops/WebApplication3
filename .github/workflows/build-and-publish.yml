@@ -22,7 +22,11 @@ jobs:
       run: |
         msbuild WebApplication3.csproj `
           /p:Configuration=Release `
-          /p:OutputPath=Published\
+          /p:DeployOnBuild=true `
+          /p:WebPublishMethod=Package `
+          /p:PackageAsSingleFile=false `
+          /p:SkipInvalidConfigurations=true `
+          /p:PackageLocation="Published\"
 
     - name: List Published Folder (Debugging)
       run: |

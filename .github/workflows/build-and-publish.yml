@@ -1,0 +1,32 @@
+name: Build and Publish .NET Framework Web App
+
+on:
+  push:
+    branches: [ main ]  # Trigger when code is pushed to main branch
+
+jobs:
+  build:
+    runs-on: windows-latest  # Needed for .NET Framework builds
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up MSBuild
+      uses: microsoft/setup-msbuild@v1.3.1
+
+    - name: Restore NuGet Packages
+      run: nuget restore WebApplication3.sln
+
+    - name: Build and Publish Web App
+      run: |
+        msbuild WebApplication3/WebApplication3.csproj `
+          /p:Configuration=Release `
+          /p:DeployOnBuild=true `
+          /p:PublishProfile=FolderProfile
+
+    - name: Upload Published App as Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: build
+        path: Published/

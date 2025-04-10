@@ -1,12 +1,12 @@
-name: Build and Publish .NET Framework Web App
+name: Build and Upload .NET Framework Web App
 
 on:
   push:
-    branches: [ master ]  # Trigger when code is pushed to main branch
+    branches: [ master ]  # Trigger on pushes to master
 
 jobs:
   build:
-    runs-on: windows-latest  # Needed for .NET Framework builds
+    runs-on: windows-latest
 
     steps:
     - name: Checkout Code
@@ -18,15 +18,17 @@ jobs:
     - name: Restore NuGet Packages
       run: nuget restore WebApplication3.sln
 
-    - name: Build and Publish Web App
+    - name: Build Project to Output Folder
       run: |
-        msbuild WebApplication3.csproj `
+        msbuild WebApplication3/WebApplication3.csproj `
           /p:Configuration=Release `
-          /p:DeployOnBuild=true `
-          /p:PublishProfile=FolderProfile
+          /p:OutputPath=Published\
+
+    - name: List Published Folder (Debugging)
+      run: dir Published /s
 
     - name: Upload Published App as Artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3.1.2
       with:
         name: build
         path: Published/

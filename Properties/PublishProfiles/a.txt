@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <PublishDir>$(SolutionDir)Published\</PublishDir>
+    <DeleteExistingFiles>true</DeleteExistingFiles>
+    <PrecompileBeforePublish>true</PrecompileBeforePublish>
+    <EnableUpdateable>true</EnableUpdateable>
+  </PropertyGroup>
+</Project>

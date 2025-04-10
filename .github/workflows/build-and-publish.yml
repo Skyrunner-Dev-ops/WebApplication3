@@ -20,7 +20,7 @@ jobs:
 
     - name: Build and Publish Web App
       run: |
-        msbuild WebApplication3/WebApplication3.csproj `
+        msbuild WebApplication3.csproj `
           /p:Configuration=Release `
           /p:DeployOnBuild=true `
           /p:PublishProfile=FolderProfile

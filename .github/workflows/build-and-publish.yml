@@ -2,7 +2,7 @@ name: Build and Publish .NET Framework Web App
 
 on:
   push:
-    branches: [ main ]  # Trigger when code is pushed to main branch
+    branches: [ master ]  # Trigger when code is pushed to main branch
 
 jobs:
   build:

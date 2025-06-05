@@ -1,0 +1,106 @@
+Practical Task:
+-------------------------------------
+
+1. Create Users Table and CRUD Operation Form
+
+	Table Fields:  
+		> UserID (PK, AI): Unique identifier for each user.  
+		> FullName: Full name of the user.  
+		> Email (Unique): Unique email address for login.  
+		> Mobile (Unique): Mobile number for contact.  
+		> Password: Secure password (hashed).  
+		> Role: Defines the user type (Admin/Instructor/Student).  
+		> DateRegistered: Auto>generated registration date.  
+
+	Validations:  
+		> FullName: Mandatory.  
+		> Email: Mandatory, valid email format, must be unique.  
+		> Mobile: Mandatory, 10 digits, numeric only, must be unique.  
+		> Password: At least one uppercase, one lowercase, one digit, one special character.  
+		> Role: Must be one of Admin, Instructor, or Student.
+
+2. Create Courses Table and CRUD Operation Form
+
+	Table Fields:  
+		> CourseID (PK, AI): Unique course identifier.  
+		> CourseName: Name of the course.  
+		> Description: Detailed course description.  
+		> StartDate: Course start date.  
+		> EndDate: Course end date.  
+		> InstructorID (FK): Foreign key referencing the Users table where Role = Instructor.
+
+	Validations:  
+		> CourseName: Mandatory.  
+		> Description: Mandatory.  
+		> StartDate: Mandatory, must be a valid future date.  
+		> EndDate: Mandatory, must be after StartDate.  
+		> InstructorID: Must exist in the Users table.
+
+
+3. Create Enrollments Table and CRUD Operation Form
+
+	Table Fields:  
+		> EnrollmentID (PK, AI): Unique enrollment identifier.  
+		> CourseID (FK): Foreign key referencing Courses.  
+		> StudentID (FK): Foreign key referencing Users where Role = Student.  
+		> EnrollmentDate: Auto>generated enrollment date.
+
+	Validations:  
+		> CourseID: Must exist in the Courses table.  
+		> StudentID: Must exist in the Users table.  
+
+	Business Rules:  
+		> Ensure students cannot enroll in the same course multiple times.  
+		> Restrict course enrollment after the course start date.
+
+
+4. Learning Management Features
+
+	A. Course Management:  
+		> Admins and Instructors can create, update, and delete courses.
+
+	B. Student Enrollment:  
+		> Students can browse available courses and enroll.  
+		> Students can view their enrolled courses.
+
+	C. Course Progress Tracking:  
+		> Instructors can update students’ course completion status.
+
+	D. Course Reports:  
+		> Generate course wise student enrollment reports.  
+		> Generate student progress and completion reports.
+
+
+
+5. Reports and Analytics  -- Optional
+
+	A. Course Summary Report:  
+		> List of all courses with enrolled student count.
+
+	B. Student Enrollment Report:  
+		> List of all students with courses they are enrolled in.
+
+	C. Progress Report:  
+		> Detailed progress report for each student.
+
+
+Technology Stack
+------------------
+	> Backend: .NET Core Web API  
+	> Frontend: .NET Core MVC, Razor Pages (with jQuery for interaction).  
+	> Database: MySQL  
+	> ORM: Entity Framework Core / Dapper  
+	> Repository Pattern: Clean architecture.  
+	> Stored Procedures: Optional for complex reports.
+
+Duration:  
+----------
+	5 6  Hours
+
+Best Practices:  
+----------------
+	> Use Dependency Injection (DI) for repositories and services.  
+	> Implement Automapper for DTO mapping.  
+	> Use Exception Handling Middleware for API error management.  
+	> Enable Swagger UI for API testing.
+
